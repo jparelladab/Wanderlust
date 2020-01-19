@@ -1,11 +1,11 @@
 // Foursquare API Info
-const clientId = '1HQGFPFSXVRZ0XVOHA4VFR5Y35COIKPKQ3Q4ATZXOJI2CJ5U';
-const clientSecret = '';
-const url = '';
+const clientId = ENV[clientId];
+const clientSecret = ENV[clientSecret];
+const url = ENV[url];
 
 // OpenWeather Info
-const openWeatherKey = '';
-const weatherUrl = '';
+const openWeatherKey = ENV[openWeatherKey];
+const weatherUrl = ENV[weatherUrl];
 
 // Page Elements
 const $input = $('#city');
