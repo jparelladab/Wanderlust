@@ -1,0 +1,26 @@
+#navbar {
+  background-color: blue;
+  height: 20vh;
+  width: 100vw;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+#navbar img {
+  height: 100%;
+}
+#navbar #navbar-title {
+  font-size : 7rem ;
+}
+#search-banner {
+  background-color: green;
+  height: 30vh;
+  width: 100vw;
+  text-align: center;
+}
+#results {
+  background-color: red;
+  height: 50vh;
+  width: 100vw;
+  text-align: center;
+}
