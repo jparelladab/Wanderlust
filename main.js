@@ -94,10 +94,8 @@ const executeSearch = () => {
   return false;
 }
 
-// $submit.click(executeSearch);
+
 $submit.click(executeSearch);
   // event.preventDefault();
-  // const city = $input.val();
-  // const urlToFetch = url + city + '&limit=10&client_id=' + clientId +'&client_secret=' + clientSecret + '&v=20200120';
-  // console.log(urlToFetch);
+
 
