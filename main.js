@@ -60,31 +60,27 @@ const createVenueHTML = (name, location, iconSource) => {
 const createWeatherHTML = (currentDay) => {
   console.log(currentDay)
   return `<h2>${weekDays[(new Date()).getDay()]}</h2>
-    <h2>Temperature: ${kelvinToFahrenheit(currentDay.main.temp)}&deg;F</h2>
+    <h2>Temperature: ${kelvinToCelsius(currentDay.main.temp)}&deg;C</h2>
     <h2>Condition: ${currentDay.weather[0].description}</h2>
     <img src="https://openweathermap.org/img/wn/${currentDay.weather[0].icon}@2x.png">`;
 }
 
-const kelvinToFahrenheit = k => ((k - 273.15) * 9 / 5 + 32).toFixed(0);
+const kelvinToCelsius = k => (k - 273.15).toFixed(0);
 
 // Render functions
 const renderVenues = (venues) => {
   $venueDivs.forEach(($venue, index) => {
-    // Add your code here:
     const venue = venues[index];
     const venueIcon = venue.categories[0].icon;
     const venueImgSrc = `${venueIcon.prefix}bg_64${venueIcon.suffix}`;
     let venueContent = createVenueHTML(venue.name, venue.location, venueImgSrc);
-    let venueContent = '';
     $venue.append(venueContent);
   });
   $destination.append(`<h2>${venues[0].location.city}</h2>`);
 }
 
 const renderForecast = (day) => {
-  // Add your code here:
-
-  let weatherContent = '';
+  const weatherContent = createWeatherHTML(day);
   $weatherDiv.append(weatherContent);
 }
 
@@ -93,15 +89,15 @@ const executeSearch = () => {
   $weatherDiv.empty();
   $destination.empty();
   $container.css("visibility", "visible");
-  getVenues();
-  getForecast();
+  getVenues().then(venues => renderVenues(venues));
+  getForecast().then(weather => renderForecast(weather));
   return false;
 }
 
 // $submit.click(executeSearch);
-$submit.click((event) => {
-  event.preventDefault();
-  const city = $input.val();
-  const urlToFetch = url + city + '&limit=10&client_id=' + clientId +'&client_secret=' + clientSecret + '&v=20200120';
-  console.log(urlToFetch);
-});
+$submit.click(executeSearch);
+  // event.preventDefault();
+  // const city = $input.val();
+  // const urlToFetch = url + city + '&limit=10&client_id=' + clientId +'&client_secret=' + clientSecret + '&v=20200120';
+  // console.log(urlToFetch);
+
